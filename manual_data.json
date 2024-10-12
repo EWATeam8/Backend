@@ -1,0 +1,344 @@
+{
+  "greet": ["Hi! How can I help you", "Hi! Tell me what you need today"],
+  "beyondScope": {
+    "responses": [
+      "Sorry! This is beyond scope of my work.",
+      "Sorry! I cannot help you with that",
+      "Sorry! I did not understand that"
+    ],
+    "action": "Do you like to see our product catalog. Mention briefly what products offers"
+  },
+  "products": {
+    "suspensions": [
+      {
+        "id":"susp101",
+        "imageUrl":"https://m.media-amazon.com/images/I/81Ns5JPE5VL.jpg",
+        "brand": "Monroe OESpectrum Shock Absorber",
+        "cost": 75,
+        "description": "Designed for passenger cars, these shock absorbers provide a smooth ride and improved handling in rocky terrain. They feature a twin-tube design and are engineered to meet or exceed OEM specifications.",
+        "delivery": 3
+      },
+      {
+        "id":"susp102",
+        "imageUrl":"https://m.media-amazon.com/images/I/718sCZDbM6L.jpg",
+        "brand": "KYB Gas-a-Just Shock Absorber",
+        "cost": 85,
+        "description": "This shock absorber is designed for vehicles that require a firmer ride and superior grip. It features a gas-charged design that helps to reduce fade and improve performance.",
+        "delivery": 2
+      },
+      {
+        "id":"susp103",
+        "imageUrl":"https://www.buybrakes.com/images/product/bilstein-air-suspension-shock-absorbers-and-struts.jpg",
+        "brand": "Bilstein B6 Performance Shock Absorber",
+        "cost": 100,
+        "description": "Known for their durability and performance, Bilstein B6 shocks are ideal for both on-road and off-road applications with high endurance and low impact shocks. They provide excellent handling and stability.",
+        "delivery": 4
+      },
+      {
+        "id":"susp104",
+        "imageUrl":"https://cdn11.bigcommerce.com/s-nhurj7m9/images/stencil/original/products/3823/66802/rmt-suspension-products-bmw-5-series-1991-1996-e34-w-self-leveling-rear-right-oem-rebuild-suspension-shock-absorber-37121134284__10341.1696810666.jpg?c=2",
+        "brand": "Eibach Pro-Kit Lowering Springs",
+        "cost": 250,
+        "description": "These lowering springs improve handling and reduce body roll while providing a more aggressive stance. They are designed to work with OEM shocks and struts.",
+        "delivery": 5
+      },
+      {
+        "id":"susp105",
+        "imageUrl":"https://m.media-amazon.com/images/I/51Jram4eVlL.jpg",
+        "brand": "Moog Control Arm Assembly",
+        "cost": 150,
+        "description": "This control arm assembly is designed to restore the original ride height and handling of your vehicle. It includes pre-installed bushings for easy installation.",
+        "delivery": 3
+      }
+    ],
+    "brakes": [
+      {
+        "id":"br101",
+        "imageUrl":"https://www.jurid.com/content/loc-emea/loc-eu/fmmp-jurid/en_GB/products/_jcr_content/main-par/tout_copy/showcase-image.img.png/Jurid%20-%20overview%20products%20700x500%20-%20composite-1691422457939.png",
+        "brand": "Disc Brake Pads",
+        "cost": 45,
+        "description": "High-performance ceramic brake pads designed for reduced noise and dust.",
+        "delivery": 5
+      },
+      {
+        "id":"br102",
+        "imageUrl":"https://www.centricparts.com/media/catalog/category/premium/Centric_Premium_Products_Montage_122122.png",
+        "brand": "Drilled and Slotted Brake Rotors",
+        "cost": 75,
+        "description": " Premium quality rotors that enhance cooling and improve braking performance.",
+        "delivery": 7
+      },
+      {
+        "id":"br103",
+        "imageUrl":"https://www.raybestos.com/media/wysiwyg/colaj.png",
+        "brand": "Calipers Brake",
+        "cost": 120,
+        "description": " High endurance calipers with a 1-year warranty, ensuring reliable performance",
+        "delivery": 5
+      },
+      {
+        "id":"br104",
+        "imageUrl":"https://subimods.com/cdn/shop/products/subaru-jdm-brembo-big-brake-kit-64-piston-w-silver-calipers-and-sti-logo-2015-2021-sti-stpkg20vv000-889045_700x700.jpg?v=1664458018",
+        "brand": "Hydraulics Brake",
+        "cost": 150,
+        "description": " High endurance hydraulics with a 2-year warranty, ensuring stable and long performance",
+        "delivery": 5
+      },
+      {
+        "id":"br105",
+        "imageUrl":"https://partsauthority.com/pap_uploadfile/productcategory/pc_20220126082956.jpg",
+        "brand": "ABS Brake",
+        "cost": 130,
+        "description": " High performance ABS with a 2-year warranty, ensuring stable and long performance",
+        "delivery": 3
+      }
+    ],
+    "batteries": [
+      {
+        "id":"btr101",
+        "imageUrl":"https://tadvantagebetaprod-com.cdn-convertus.com/uploads/sites/394/2023/08/3b6b4fd56fbee00d285174633e2ab7c8x-1.png",
+        "brand": "Optima Red Top Battery",
+        "cost": 239,
+        "description": "A high-performance starting battery with a spill-proof design, ideal for vehicles with high electrical demands",
+        "delivery": 2
+      },
+      {
+        "id":"btr102",
+        "imageUrl":"https://previews.123rf.com/images/maxxyustas/maxxyustas1210/maxxyustas121000008/15649675-car-battery-on-white-background-three-dimensional-image.jpg",
+        "brand": "DieHard Gold Battery",
+        "cost": 189.99,
+        "description": "A reliable battery with a longer lifespan and enhanced starting power, suitable for various vehicle types",
+        "delivery": 3
+      },
+      {
+        "id":"btr103",
+        "imageUrl":"https://crdms.images.consumerreports.org/prod/products/cr/models/397460-car-batteries-acdelco-24-pg-10003768.png",
+        "brand": "ACDelco Professional AGM Battery",
+        "cost": 215,
+        "description": "An absorbed glass mat (AGM) battery that provides superior performance and durability, perfect for start-stop vehicles.",
+        "delivery": 4
+      },
+      {
+        "id":"btr104",
+        "imageUrl":"https://m.media-amazon.com/images/I/81KTHlemDJL.jpg",
+        "brand": "Interstate Mega-Tron Plus Battery",
+        "cost": 199,
+        "description": "A robust battery designed for heavy-duty applications, offering excellent starting power and vibration resistance.",
+        "delivery":5
+      },
+      {
+        "id":"btr105",
+        "imageUrl":"https://images.thdstatic.com/productImages/6d6279b1-5672-4e67-a318-4477b32ce15f/svn/exide-car-batteries-sx24f-64_1000.jpg",
+        "brand": "Exide Edge AGM Battery",
+        "cost": 229.99,
+        "description": " A premium AGM battery that delivers high cycling capabilities and is designed for extreme conditions",
+        "delivery": 5
+      }
+    ],
+    "clutches": [
+      {
+        "id":"cl101",
+        "imageUrl":"https://m.media-amazon.com/images/I/81tY7sKpz9L.jpg",
+        "brand": "Standard Clutch Kit",
+        "cost": 150,
+        "description": "This kit includes a clutch disc, pressure plate, and release bearing. It is designed for standard passenger vehicles.",
+        "delivery": 5
+      },
+      {
+        "id":"cl102",
+        "imageUrl":"https://www.altousa.com/images/uploads/standard-11-040403.jpg_",
+        "brand": "Performance Clutch Kit",
+        "cost": 250,
+        "description": "A high-performance clutch kit designed for sports cars and modified vehicles. It offers improved torque capacity and quicker engagement.",
+        "delivery": 7
+      },
+      {
+        "id":"cl103",
+        "imageUrl":"https://stmtuned.com/cdn/shop/products/05048-clutch-masters-clutch-kit-dsm-FX300_1024x1024.jpg?v=1646080753",
+        "brand": "Heavy-Duty Clutch Kit",
+        "cost": 300,
+        "description": "This kit is designed for heavy-duty applications, suitable for trucks and commercial vehicles. It provides enhanced durability and performance under load.",
+        "delivery": 10
+      },
+      {
+        "id":"cl104",
+        "imageUrl":"https://www.fcpeuro.com/public/assets/products/319211/large/open-uri20190515-6170-1y3ida5.?1557954692",
+        "brand": "Organic Clutch Disc",
+        "cost": 75,
+        "description": "A single organic clutch disc suitable for everyday driving. It offers smooth engagement and is ideal for standard vehicles.",
+        "delivery": 3
+      },
+      {
+        "id":"cl105",
+        "imageUrl":"https://patrickmotorsports.com/cdn/shop/products/CLU.240.6PD.RDH.800.PMPCLUTCHDISC1024X1024_300PPIJUNE092021_800x.jpg?v=1623255909",
+        "brand": "Ceramic Clutch Disc",
+        "cost": 120,
+        "description": "A ceramic clutch disc designed for high-performance applications. It can handle higher temperatures and is ideal for racing or heavy-duty use.",
+        "delivery":5
+      },
+      {
+        "id":"cl106",
+        "imageUrl":"https://m.media-amazon.com/images/I/611Lh4lL2GL._AC_UF894,1000_QL80_.jpg",
+        "brand": "Clutch Release Bearing",
+        "cost":80,
+        "description": "A high-quality release bearing compatible with various clutch kits. It ensures smooth operation and longevity.",
+        "delivery":3
+      }
+    ],
+    "radiators": [
+      {
+        "id":"rad101",
+        "imageUrl":"https://www.mksportscars.com/cdn/shop/files/universal-aluminium-radiator-001_burned_3.jpg?v=1705628973",
+        "brand": "Aluminum Radiator for Honda Civic",
+        "cost": 150,
+        "description": "High-performance aluminum radiator designed for Honda Civic models. It features a lightweight design and improved cooling efficiency.",
+        "delivery": 6
+      },
+      {
+        "id":"rad102",
+        "imageUrl":"https://www.chevsofthe40s.com/images_product/large/3130944.jpg",
+        "brand": "Copper Brass Radiator for Ford F-150",
+        "cost": 200,
+        "description": "Durable copper-brass radiator that provides excellent heat dissipation. Compatible with various Ford F-150 models.",
+        "delivery": 7
+      },
+      {
+        "id":"rad103",
+        "imageUrl":"https://chenhsong.com/wp-content/uploads/2021/02/Car_radiator_800x600.jpg",
+        "brand": "Plastic Tank Radiator for Toyota Corolla",
+        "cost": 120,
+        "description": "A cost-effective plastic tank radiator that fits Toyota Corolla models. It is designed for easy installation and reliable performance.",
+        "delivery": 4
+      },
+      {
+        "id":"rad104",
+        "imageUrl":"https://m.media-amazon.com/images/I/71w41jeDs0L._AC_UF1000,1000_QL80_.jpg",
+        "brand": "Performance Radiator for Chevrolet Silverado",
+        "cost": 250,
+        "description": "A high-capacity performance radiator for Chevrolet Silverado, designed to handle increased heat loads and improve engine performance.",
+        "delivery": 7
+      },
+      {
+        "id":"rad105",
+        "imageUrl":"https://image.made-in-china.com/2f0j00ROvTSIYnAWrd/Hot-Selling-OEM-Auto-Radiator-Auto-Parts.webp",
+        "brand": "OEM Replacement Radiator for Nissan Altima",
+        "cost": 180,
+        "description": "Original Equipment Manufacturer (OEM) replacement radiator for Nissan Altima, ensuring a perfect fit and reliable operation.",
+        "delivery": 5
+      }
+    ],
+    "transmissions": [
+      {
+        "id":"trm101",
+        "imageUrl":"https://shop.valvolineglobal.com/cdn/shop/files/fnrcljlirltvmuv4tkeo.png?v=1724706069&width=800",
+        "brand": "Automatic Transmission Fluid (ATF)",
+        "cost": 25,
+        "description": "A high-performance fluid designed for automatic transmissions, providing excellent lubrication and protection.",
+        "delivery": 4
+      },
+      {
+        "id":"trm102",
+        "imageUrl":"https://m.media-amazon.com/images/I/61nEO9+RXHL._AC_UF894,1000_QL80_.jpg",
+        "brand": "Transmission Filter Kit",
+        "cost": 25,
+        "description": "Includes a filter and gasket for various automatic transmission models, ensuring optimal performance and longevity.",
+        "delivery": 4
+      },
+      {
+        "id":"trm103",
+        "imageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSATr-9fq-5iGF7L8P4Oq0bbaS7hPUfAPjNmg&s",
+        "brand": "Rebuilt Transmission Units",
+        "cost": 1200,
+        "description": "Fully remanufactured transmission units for popular car models, tested for quality and performance.",
+        "delivery":10
+      },
+      {
+        "id":"trm104",
+        "imageUrl":"https://m.media-amazon.com/images/I/815H9yFzctL.jpg",
+        "brand": "Transmission Cooler",
+        "cost": 100,
+        "description": "An aftermarket transmission cooler designed to reduce transmission temperatures and improve performance.",
+        "delivery": 5
+      },
+      {
+        "id":"trm105",
+        "imageUrl":"https://m.media-amazon.com/images/I/41ZtnYN3y6L._AC_UF894,1000_QL80_.jpg",
+        "brand": "Clutch Kits for Manual Transmissions",
+        "cost": 200,
+        "description": "Complete clutch kits including pressure plate, disc, and release bearing for various manual transmission vehicles.",
+        "delivery": 5
+      },
+      {
+        "id":"trm106",
+        "imageUrl":"https://m.media-amazon.com/images/I/81sFmyBTOPL.jpg",
+        "brand": "Torque Converter",
+        "cost": 300,
+        "description": "High-quality torque converters designed to improve engine performance and fuel efficiency in automatic transmissions.",
+        "delivery":6
+      }
+    ],
+    "headlights": [
+      {
+        "id":"hdl101",
+        "imageUrl":"https://ae01.alicdn.com/kf/Saa4e76c649f54a178bb496bab8c311e8j/Auto-Parts-LED-Headlights-130W-High-Power-Double-Copper-Tube12V24V-Universal-H4-Refit-Suitable-For-AT.jpg",
+        "brand": "LED Headlight Bulbs",
+        "cost": 50,
+        "description": "High-intensity LED headlight bulbs with a lifespan of up to 30,000 hours. They provide bright white light and are energy-efficient.",
+        "delivery": 6
+      },
+      {
+        "id":"hdl102",
+        "imageUrl":"https://m.media-amazon.com/images/I/61D3qNObCML.jpg",
+        "brand": "Halogen Headlight Bulbs",
+        "cost": 20,
+        "description": "Standard halogen bulbs that offer reliable performance and are easy to install. Available in various wattages.",
+        "delivery": 3
+      },
+      {
+        "id":"hdl103",
+        "imageUrl":"https://images.roverparts.com/1000/D2S-01.jpg",
+        "brand": "Xenon HID Headlight Kits",
+        "cost": "$100 per kit",
+        "description": "High-intensity discharge (HID) kits that provide a brighter and more focused beam. Includes all necessary components for installation.",
+        "delivery":7
+      },
+      {
+        "id":"hdl104",
+        "imageUrl":"https://m.media-amazon.com/images/I/71x1KPiJMNL.jpg",
+        "brand": "Projector Headlights",
+        "cost": 150,
+        "description": "Aftermarket projector headlights that enhance visibility and give a modern look to vehicles. Available for various car models.",
+        "delivery": 10
+      },
+      {
+        "id":"hdl105",
+        "imageUrl":"https://m.media-amazon.com/images/I/61hwdgU9FpL._AC_UF894,1000_QL80_.jpg",
+        "brand": "Daytime Running Lights (DRL)",
+        "cost": 30,
+        "description": "LED daytime running lights that improve vehicle visibility during the day. Easy to install and energy-efficient.",
+        "delivery": 5
+      }
+    ],
+
+    "otheroptions": {
+      "response": ["Sorry! We provide only the mentioned products"]
+    }
+  },
+  "orders": [
+    {"items":"Ask for how many items you want?"},
+    { "deliveryCharge":"Mention the delivery cost which will be atmost 10% of total cost"},
+    { "totalcost":"display total cost of order before proceeding to checkout"},
+    { "address": "Ask for address in one line" },
+    { "creditcard": "ask for only credit card number" }
+  ],
+  "payment": {
+    "ordernumber": "generate an order number of 5 digits but hide abstraction; dont' mention any different message",
+    "deliverydate": "generate a delivery date with human readable format which will give a date which if after around the range October 20 - October 30 2024",
+    "endConversation": "Thanks for purchasing with us",
+    "action": "End the session afterwards"
+  },
+  "endConversationIfNotPurchased": {
+    "response": "Goodbye!",
+    "action": "End the session afterwards"
+  }
+}

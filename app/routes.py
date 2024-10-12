@@ -1,11 +1,19 @@
+import threading
+
 from flask import Blueprint, jsonify, request
 
+from app.globals import chat_status
+from app.services.ai_model import print_queue, user_queue, run_chat
+from app.services.train_model import train_autogen_agent
+
 main = Blueprint("main", __name__)
+
+chat_status = chat_status
 
 
 @main.route("/api/train", methods=["POST", "OPTIONS"])
 def train_agent():
-    manual_data_path = "./manual_data.json"
+    manual_data_path = "../manual_data.json"
     try:
         train_autogen_agent(manual_data_path)
         return jsonify({"status": "Training completed!"}), 200

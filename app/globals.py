@@ -1,0 +1,2 @@
+
+chat_status = "ended"
