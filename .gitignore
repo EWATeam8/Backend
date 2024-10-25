@@ -2,7 +2,7 @@
 fine_tuned_autogen_agent
 autogen_agent
 .idea
-# __pycache__
+__pycache__
 *.pyc
 .cache
 .vscode
