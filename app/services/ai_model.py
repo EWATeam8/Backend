@@ -4,30 +4,24 @@ from autogen.agentchat.contrib.gpt_assistant_agent import GPTAssistantAgent
 import autogen
 import time
 import asyncio
-import queue
 
 from app.services.train_model import load_manual_data
-from app.globals import chat_status
+from app.globals import user_queue, print_queue, update_chat_status
 
-chat_status = chat_status
-
-print_queue = queue.Queue()
-user_queue = queue.Queue()
 
 class MyConversableAgent(autogen.ConversableAgent):
     async def a_get_human_input(self, prompt: str) -> str:
         start_time = time.time()
-        global chat_status
-        chat_status = "inputting"
+        update_chat_status("inputting")
         while True:
             if not user_queue.empty():
                 input_value = user_queue.get()
-                chat_status = "Chat ongoing"
+                update_chat_status("Chat ongoing")
                 print("input message: ", input_value)
                 return input_value
 
             if time.time() - start_time > 600:
-                chat_status = "ended"
+                update_chat_status("ended")
                 return "exit"
 
             await asyncio.sleep(1)
@@ -69,7 +63,6 @@ async def initiate_chat(agent, recipient):
 
 
 def run_chat(request_json):
-    global chat_status
     manager = None
     assistants = []
     try:
@@ -79,10 +72,10 @@ def run_chat(request_json):
         manager, assistants = create_groupchat(agents_info, task_info, userproxy)
         asyncio.run(initiate_chat(userproxy, manager))
 
-        chat_status = "ended"
+        update_chat_status("ended")
 
     except Exception as e:
-        chat_status = "error"
+        update_chat_status("error")
         print_queue.put({"user": "System", "message": f"An error occurred: {str(e)}"})
 
 

@@ -2,13 +2,11 @@ import threading
 
 from flask import Blueprint, jsonify, request
 
-from app.globals import chat_status
 from app.services.ai_model import print_queue, user_queue, run_chat
+from app.globals import update_chat_status, chat_status
 from app.services.train_model import train_autogen_agent
 
 main = Blueprint("main", __name__)
-
-chat_status = chat_status
 
 
 @main.route("/api/train", methods=["POST", "OPTIONS"])
@@ -26,18 +24,16 @@ def start_chat():
     if request.method == "OPTIONS":
         return jsonify({}), 200
     elif request.method == "POST":
-        global chat_status
         try:
-
             if chat_status == "error":
-                chat_status = "ended"
+                update_chat_status("ended")
 
             with print_queue.mutex:
                 print_queue.queue.clear()
             with user_queue.mutex:
                 user_queue.queue.clear()
 
-            chat_status = "Chat started"
+            update_chat_status("Chat started")
 
             thread = threading.Thread(target=run_chat, args=(request.json,))
             thread.start()
@@ -56,8 +52,6 @@ def send_message():
 
 @main.route("/api/get_message", methods=["GET"])
 def get_messages():
-    global chat_status
-
     if not print_queue.empty():
         msg = print_queue.get()
         return jsonify({"message": msg, "chat_status": chat_status}), 200
