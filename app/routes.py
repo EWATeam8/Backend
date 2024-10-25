@@ -3,7 +3,7 @@ import threading
 from flask import Blueprint, jsonify, request
 
 from app.services.ai_model import print_queue, user_queue, run_chat
-from app.globals import update_chat_status, chat_status
+from app.globals import set_chat_status, get_chat_status
 
 main = Blueprint("main", __name__)
 
@@ -13,20 +13,20 @@ def start_chat():
         return jsonify({}), 200
     elif request.method == "POST":
         try:
-            if chat_status == "error":
-                update_chat_status("ended")
+            if get_chat_status() == "error":
+                set_chat_status("ended")
 
             with print_queue.mutex:
                 print_queue.queue.clear()
             with user_queue.mutex:
                 user_queue.queue.clear()
 
-            update_chat_status("Chat started")
+            set_chat_status("Chat started")
 
             thread = threading.Thread(target=run_chat, args=(request.json,))
             thread.start()
 
-            return jsonify({"status": chat_status})
+            return jsonify({"status": get_chat_status()})
         except Exception as e:
             return jsonify({"status": "Error occurred", "error": str(e)})
 
@@ -42,6 +42,6 @@ def send_message():
 def get_messages():
     if not print_queue.empty():
         msg = print_queue.get()
-        return jsonify({"message": msg, "chat_status": chat_status}), 200
+        return jsonify({"message": msg, "chat_status": get_chat_status()}), 200
     else:
-        return jsonify({"message": None, "chat_status": chat_status}), 200
+        return jsonify({"message": None, "chat_status": get_chat_status()}), 200

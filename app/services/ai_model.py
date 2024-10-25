@@ -5,23 +5,27 @@ import autogen
 import time
 import asyncio
 
-from app.services.train_model import load_manual_data
-from app.globals import user_queue, print_queue, update_chat_status
+from app.globals import user_queue, print_queue, set_chat_status
+
+
+def load_manual_data(json_file):
+    with open(json_file, "r", encoding="utf-8") as file:
+        return file.read()
 
 
 class MyConversableAgent(autogen.ConversableAgent):
     async def a_get_human_input(self, prompt: str) -> str:
         start_time = time.time()
-        update_chat_status("inputting")
+        set_chat_status("inputting")
         while True:
             if not user_queue.empty():
                 input_value = user_queue.get()
-                update_chat_status("Chat ongoing")
+                set_chat_status("Chat ongoing")
                 print("input message: ", input_value)
                 return input_value
 
             if time.time() - start_time > 600:
-                update_chat_status("ended")
+                set_chat_status("ended")
                 return "exit"
 
             await asyncio.sleep(1)
@@ -72,10 +76,10 @@ def run_chat(request_json):
         manager, assistants = create_groupchat(agents_info, task_info, userproxy)
         asyncio.run(initiate_chat(userproxy, manager))
 
-        update_chat_status("ended")
+        set_chat_status("ended")
 
     except Exception as e:
-        update_chat_status("error")
+        set_chat_status("error")
         print_queue.put({"user": "System", "message": f"An error occurred: {str(e)}"})
 
 

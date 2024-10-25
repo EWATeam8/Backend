@@ -6,3 +6,4 @@ Flask-MongoEngine
 openai
 python-dotenv
 Flask-CORS
+# werkzeug==2.1.0

@@ -13,20 +13,24 @@ This is the backend service for a manufacturer chat application. It uses Python 
 - Fine-tuning with Transformers
 
 ## Project Structure
-│
-├── app/
-│ ├── init.py
-│ ├── routes.py
-│ ├── models/
-│ │ └── product.py
-│ └── services/
-│ ├── ai_model.py
-│ └── train_model.py
-│
-├── manual_data.json
-├── requirements.txt
-├── config.py
-└── run.py
+
+    │
+    ├── app/
+    │ ├── init.py
+    │ ├── routes.py
+    │ ├── globals.py
+    | |
+    │ ├── models/
+    │ | └── product.py
+    | |
+    │ └── services/
+    │   ├── init.py
+    |   └── ai_model.py
+    │
+    ├── manual_data.json
+    ├── requirements.txt
+    ├── config.py
+    └── run.py
 
 ## Key Components
 
@@ -34,7 +38,6 @@ This is the backend service for a manufacturer chat application. It uses Python 
 2. **models/product.py**: Defines the Product model.
 3. **services/ai_model.py**: Implements the AutoGen-based chat functionality.
 4. **services/train_model.py**: Handles the fine-tuning of the language model.
-
 
 ## API Endpoints
 
@@ -47,7 +50,6 @@ This is the backend service for a manufacturer chat application. It uses Python 
 
 The `train_model.py` script handles fine-tuning of the GPT-2 model using the Transformers library. To run the fine-tuning process:
 python -m app.services.train_model
-
 
 This will use the data in `manual_data.json` to fine-tune the model.
 
