@@ -1,5 +1,8 @@
 Flask==2.0.1
 Flask-SQLAlchemy==2.5.1
 autogen~=0.3.1
-transformers~=4.45.2
-datasets~=3.0.1
+autogen-agentchat~=0.2
+Flask-MongoEngine
+openai
+python-dotenv
+Flask-CORS

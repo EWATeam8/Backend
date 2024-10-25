@@ -4,20 +4,8 @@ from flask import Blueprint, jsonify, request
 
 from app.services.ai_model import print_queue, user_queue, run_chat
 from app.globals import update_chat_status, chat_status
-from app.services.train_model import train_autogen_agent
 
 main = Blueprint("main", __name__)
-
-
-@main.route("/api/train", methods=["POST", "OPTIONS"])
-def train_agent():
-    manual_data_path = "../manual_data.json"
-    try:
-        train_autogen_agent(manual_data_path)
-        return jsonify({"status": "Training completed!"}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
 
 @main.route("/api/start_chat", methods=["POST", "OPTIONS"])
 def start_chat():
