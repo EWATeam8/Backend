@@ -1,4 +1,5 @@
 {
+  "recommendation":{
   "greet": ["Hi! How can I help you", "Hi! Tell me what you need today"],
   "beyondScope": {
     "responses": [
@@ -341,4 +342,45 @@
     "response": "Goodbye!",
     "action": "End the session afterwards"
   }
+},
+
+"orderstatus":{
+  "greet":["Please tell me your order number"],
+  "ordernumber":"Alright,Please tell order number",
+  "lastName":"Thanks. Please tell your last name",
+  "productSnap":"Please include product image along with your query",
+  "refund":{
+    "reason":["defective","damaged","lost"],
+    "action":"refund",
+    "apology":"Sorry for any incovenience. We will initiate refund of the damaged product/parcel immediately"
+  },
+  "replace":{
+    "reason":["wet","missing","incorrect"],
+    "action":"replacement",
+    "apology":"Sorry for any incovenience. We will initiate replacement of the product/parcel immediately. Mention the reason"
+  },
+  "escalteAgent":{
+    "reason":["normal","inquiry","unknown"],
+    "status":"The parcel/product appears normal",
+    "action":"escalte to human",
+    "apology":"There is no visible defect in the product that you received or a major damage in the shipping box. Please call 1-800-234-5678 for firther assistance"
+  }
+ 
 }
+,
+"fraudTransaction":{
+  "greet":"Please report any transactional queries",  
+  
+  "orderCopy":"Please provide transaction copy",
+  "refund":"issue for refund if order number is missing,  Last Name is missing, or credit card last 4 digits is missing. Mention which reason",
+  "decline":"mention transaction is proper if last name is valid, and order number is valid, and credit card number is valid.",
+  "escalteAgent": "for unknown image and beyond the scope queries, escalate to agent and ask to call on 1-800-234-5678 for further assistance" 
+}
+
+
+
+
+}
+
+
+
