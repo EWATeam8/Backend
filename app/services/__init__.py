@@ -1,0 +1,1 @@
+from app.services.autogen_image_transfer import upload_image_to_autogen

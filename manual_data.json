@@ -372,7 +372,7 @@
   "greet":"Please report any transactional queries",  
   
   "orderCopy":"Please provide transaction copy",
-  "refund":"issue for refund if order number is missing,  Last Name is missing, or credit card last 4 digits is missing. Mention which reason",
+  "refund":"issue for refund if order number is missing, Last Name is missing, or credit card last 4 digits is missing. Mention which reason",
   "decline":"mention transaction is proper if last name is valid, and order number is valid, and credit card number is valid.",
   "escalteAgent": "for unknown image and beyond the scope queries, escalate to agent and ask to call on 1-800-234-5678 for further assistance" 
 }
