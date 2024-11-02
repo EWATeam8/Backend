@@ -7,6 +7,7 @@ from app.globals import set_chat_status, get_chat_status
 
 main = Blueprint("main", __name__)
 
+
 @main.route("/api/start_chat", methods=["POST", "OPTIONS"])
 def start_chat():
     if request.method == "OPTIONS":
@@ -33,11 +34,16 @@ def start_chat():
 
 @main.route("/api/send_message", methods=["POST"])
 def send_message():
-    user_input = request.json["message"]
-    uploaded_image = request.json["image"]
-    print(user_input)
-    user_queue.put((user_input, uploaded_image))
-    return jsonify({"status": "Message Received"})
+    try:
+        uploaded_image = request.json.get("image", None)  # Use .get() with default None
+        message = request.json.get("message", "")
+
+        # Add message and image to queue
+        user_queue.put((message, uploaded_image))
+
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 400
 
 
 @main.route("/api/get_message", methods=["GET"])
