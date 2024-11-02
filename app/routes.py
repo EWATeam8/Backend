@@ -35,10 +35,9 @@ def start_chat():
 @main.route("/api/send_message", methods=["POST"])
 def send_message():
     try:
-        uploaded_image = request.json.get("image", None)  # Use .get() with default None
+        uploaded_image = request.json.get("image", None)
         message = request.json.get("message", "")
-
-        # Add message and image to queue
+        print((message, uploaded_image))
         user_queue.put((message, uploaded_image))
 
         return jsonify({"status": "success"})

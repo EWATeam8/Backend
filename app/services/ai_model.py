@@ -33,17 +33,16 @@ Follow this exact workflow:
 1. When user asks about order status, ask for their order number
 2. After receiving order number, ask for an image of the package
 3. Once image is received, analyze it and categorize as:
-   - Refund: if package shows tears/damage : WE PRIORITIZE CUSTOMER OBSESSION & CUSTOMER IS ALWAYS RIGHT
+   - Refund: if package shows tears/damage
    - Replace: if package appears wet
    - Escalate: if package looks normal or unclear
-You must always use the provided tools for analysis.
-REMEMBER DO NOT HALLUCINATE. IF YOU ARE UNSURE PLEASE ASK FOR FURTHER INFORMATION BEFORE TAKING ANY DECISION.  """
+You must always use the provided tools for analysis."""
 
 from app.globals import user_queue, print_queue, set_chat_status
 
 
 # aditya changes
-config_list = [{"model": "gpt-4o-mini", "api_key": os.environ.get("OPENAI_API_KEY")}]
+config_list = [{"model": "gpt-4o", "api_key": os.environ.get("OPENAI_API_KEY")}]
 
 llm_config22 = {
     "request_timeout": 600,
@@ -54,7 +53,6 @@ llm_config22 = {
 
 # aditya changes
 client = OpenAI(
-    # This is the default and can be omitted
     api_key=os.environ.get("OPENAI_API_KEY"),
 )
 
@@ -78,31 +76,32 @@ class MyConversableAgent(autogen.ConversableAgent):
             if not user_queue.empty():
                 (input_value, image) = user_queue.get()
                 set_chat_status("Chat ongoing")
+                print("State " + self.state)
+                if self.state == "waiting_for_image":
+                    self.state = "initial"
+                    if image:
+                        ans = await upload_image_to_autogen(image)
+                        if ans:
+                            return ans
+                    return "Sorry, I couldn't process the image. Please try again."
 
-                # Handle the order status workflow
-                if self.state == "initial":
+                elif self.state == "initial":
+                    print(self.state + " State")
                     if (
                         "status" in input_value.lower()
                         and "order" in input_value.lower()
                     ):
                         self.state = "waiting_for_order"
                         return "Please provide your order number."
+                    elif "fraud" in input_value.lower():
+                        self.state = "waiting_for_image"
+                        return "Please provide your transaction copy."
                     return input_value
 
                 elif self.state == "waiting_for_order":
                     self.order_number = input_value
                     self.state = "waiting_for_image"
                     return "Thank you. Please provide an image of your package."
-
-                elif self.state == "waiting_for_image":
-                    self.state = "initial"  # Reset state
-                    if image:
-                        ans = await upload_image_to_autogen(image)
-                        if ans:
-                            data1 = json.loads(ans)
-                            content = data1["content"]
-                            return input_value + "|" + content
-                    return "Sorry, I couldn't process the image. Please try again."
 
                 return input_value
 
@@ -118,14 +117,33 @@ def print_messages(recipient, messages, sender, config):
         f"Messages from: {sender.name} sent to: {recipient.name} | num messages: {len(messages)} | message: {messages[-1]}"
     )
 
-    content = messages[-1]["content"].split("|")[0]  # aditya changes
+    last_message = messages[-1]
 
-    if all(key in messages[-1] for key in ["name"]):
-        print_queue.put({"user": messages[-1]["name"], "message": content})
-    elif messages[-1]["role"] == "user":
-        print_queue.put({"user": sender.name, "message": content})
-    else:
-        print_queue.put({"user": recipient.name, "message": content})
+    # Handle JSON response from image analysis
+    try:
+        if isinstance(last_message["content"], str) and last_message[
+            "content"
+        ].startswith('{"rationale"'):
+            json_data = json.loads(last_message["content"])
+            # Extract only the content field from JSON
+            content = json_data["content"]
+            if (
+                "replace" in json_data["decision"].lower()
+                or "refund" in json_data["decision"].lower()
+            ):
+                print_queue.put({"user": "RecommendationAgent", "message": content})
+            return False, None
+    except (json.JSONDecodeError, KeyError):
+        pass
+
+    # Handle regular messages
+    content = (
+        last_message["content"].split("|")[0]
+        if "|" in last_message["content"]
+        else last_message["content"]
+    )
+
+    print_queue.put({"user": sender.name, "message": content})
 
     return False, None
 
@@ -137,9 +155,8 @@ async def upload_image_to_autogen(base64_image):
         return ""
 
     try:
-        # Make the API call to OpenAI's chat completion with base64 image
         response = client.chat.completions.create(
-            model="gpt-4-vision-preview",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "assistant",
@@ -341,7 +358,6 @@ def my_message_generator():
 
     data = load_manual_data(manual_data_path)
 
-    # return "You are a recommendation AI bot. Train your responses based on the data provided. When user ask about product give within recommended data.   \n Data: \n" + data
     return f"""You are a recommendation AI bot with two assistant agents. Order status and Fraud Detection. 
         Train your responses based on the data provided.
         When user ask about product recommendation, give within recommendation data of {data}.   
@@ -352,10 +368,15 @@ def my_message_generator():
 
 
 async def initiate_chat(agent, recipient, assistants, image=None):
-    # print('inside initiate chat', my_message_generator())
-    result = await agent.a_initiate_chat(
-        recipient, assistants, message=my_message_generator()
-    )
+    # Set the correct message direction
+    message = my_message_generator()
+    if isinstance(recipient, autogen.GroupChatManager):
+        # For group chats, set the initial speaker
+        recipient.groupchat.messages.append(
+            {"role": "assistant", "content": message, "name": assistants[0].name}
+        )
+
+    result = await agent.a_initiate_chat(recipient, assistants, message=message)
     return result
 
 
@@ -398,19 +419,18 @@ agent_classes = {
 
 
 def create_groupchat(agents_info, task_info, user_proxy):
-    # assistants = []
-    agent_a = GPTAssistantAgent(
+    GPTAssistantAgent(
         name="Order Status Agent",
         instructions="""you are a customer service order status agent for a deliver service, equipped to analyze delivery of packages and products. if the package/product appears damaged with tears, proceed for refund. if the package/product looks wet, initiate a replacement. if the package/product looks normal and not damaged, escalte to agent. for unclear queries and images, escalte to agent. you must always use tools""",
         llm_config=llm_config22,
     )
-    agent_b = GPTAssistantAgent(
+
+    GPTAssistantAgent(
         name="Fraud Detection Agent",
         instructions="""you are a customer service fraud detection agent for a deliver service, equipped to analyze fraud in transaction of packages/products. If the transaction appears suspicious/fraud, proceed for refund. If the transaction looks normal, decline the request. For unwanted queries, escalate to the agent. you must always use tools""",
         llm_config=llm_config22,
     )
 
-    # assistants = [agent_a, agent_b]
     assistants = []
 
     for agent_info in agents_info:

@@ -357,7 +357,7 @@
   "replace":{
     "reason":["wet","missing","incorrect"],
     "action":"replacement",
-    "apology":"Sorry for any incovenience. We will initiate replacement of the product/parcel immediately. Mention the reason"
+    "apology":"Sorry for any incovenience. We will initiate replacement of the product/parcel immediately due to logistic issues. "
   },
   "escalteAgent":{
     "reason":["normal","inquiry","unknown"],
@@ -371,8 +371,12 @@
 "fraudTransaction":{
   "greet":"Please report any transactional queries",  
   
-  "orderCopy":"Please provide transaction copy",
-  "refund":"issue for refund if order number is missing,  Last Name is missing, or credit card last 4 digits is missing. Mention which reason",
+  "orderCopy":"Please provide transaction copy", 
+  "refund":{
+    "reason":["missing Order Number"],
+    "action":"refund",
+    "apology":"Sorry for any incovenience. There is no Order Number reported in the receipt. We will initiate refund of the fraud transaction immediately."
+  },
   "decline":"mention transaction is proper if last name is valid, and order number is valid, and credit card number is valid.",
   "escalteAgent": "for unknown image and beyond the scope queries, escalate to agent and ask to call on 1-800-234-5678 for further assistance" 
 }
